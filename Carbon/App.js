@@ -10,6 +10,8 @@ import HomePage from './pages/HomePage';
 import { useFonts } from 'expo-font';
 
 
+import History from './pages/history';
+
 const Stack = createNativeStackNavigator();
 
 function HomeScreen({navigation}) {
@@ -43,7 +45,7 @@ export default function App({navigation}) {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Test" component={TestScreen} />
+        <Stack.Screen name="Test" component={History} />
       </Stack.Navigator>
 
       <NavBar navigationVar={navigation} />
