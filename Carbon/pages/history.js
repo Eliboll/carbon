@@ -1,9 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
+import { StyleSheet, Button, Text, View, SafeAreaView, FlatList, Dimensions, TouchableHighlight } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import {FontAwesome5} from '@expo/vector-icons'; 
 
 import HistoryData from "./historyData";
+function buttonClicked({}) {
 
+}
 function Item({ historyEntry }) {
   return (
     <>
@@ -29,6 +32,11 @@ function Item({ historyEntry }) {
             <Text style = {banner.Distance}>{historyEntry.Distance} Miles</Text>
             </Row>
             </Col>
+            <Col>
+            <TouchableHighlight onPress={buttonClicked({})}>
+              <FontAwesome5 name="redo" size={30} color="white" style={banner.button}/>
+            </TouchableHighlight>
+            </Col>
           </Row>
         </Grid>
       </View>
@@ -53,6 +61,10 @@ const banner = StyleSheet.create({
   container: {
     
   },
+  button: {
+    backgroundColor: "#3A3A3A",
+    textAlign: 'center'
+},
   box: {
     flex: 1,
     backgroundColor: '#fff',
@@ -68,7 +80,7 @@ const banner = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     borderWidth: 4,
-    borderTopWidth: 6,
+    borderTopWidth: 20,
     borderBottomWidth: 0,
     marginBottom: 0
   },
@@ -82,15 +94,20 @@ const banner = StyleSheet.create({
   TripName: {
     alignSelf: 'center',
     color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold'
 
   },
   vehicle: {
     alignSelf: 'center',
     color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold'
   },
   CarbonUsage: {
     alignSelf: 'center',
     color: '#AF0000',
+    fontSize: 24
   },
   Date: {
     color: 'white'
