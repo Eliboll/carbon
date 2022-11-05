@@ -14,23 +14,23 @@ function HomeScreen({navigation}) {
     <View style={styles.container}>
     <Text>Balls!!!</Text>
     <Button
-        title="Go to TestScreen"
-        onPress={() => navigation.navigate('Test')}
+        title="Add a Trip!"
+        onPress={() => navigation.navigate('Add Trip')}
       />
     <StatusBar style="auto" />
 
     <View style={navStyles.viewContainer}>
       <TouchableHighlight onPress={() => navigation.navigate('Home')}>
           <View >
-              <Entypo name="home" size={52} color="white" style={navStyles.button} />
+              <Entypo name="home" size={52} color="green" style={navStyles.button} />
           </View>
       </TouchableHighlight>
-      <TouchableHighlight onPress={() => navigation.navigate('Test')}>
+      <TouchableHighlight onPress={() => navigation.navigate('Add Trip')}>
           <View >
               <Feather name="plus-circle" size={52} color="white" style={navStyles.button}/>
           </View>
       </TouchableHighlight>
-      <TouchableHighlight onPress={() => navigation.navigate('Test')}>
+      <TouchableHighlight onPress={() => navigation.navigate('History')}>
           <View >
               <FontAwesome5 name="history" size={52} color="white" style={navStyles.button}/>
           </View>
@@ -41,7 +41,7 @@ function HomeScreen({navigation}) {
   );
 }
 
-function TestScreen({navigation}) {
+function AddTripScreen({navigation}) {
   return (
     <View style={styles.container}>
     <Text>Not Balls!!!</Text>
@@ -57,14 +57,46 @@ function TestScreen({navigation}) {
               <Entypo name="home" size={52} color="white" style={navStyles.button} />
           </View>
       </TouchableHighlight>
-      <TouchableHighlight onPress={() => navigation.navigate('Test')}>
+      <TouchableHighlight onPress={() => navigation.navigate('Add Trip')}>
+          <View >
+              <Feather name="plus-circle" size={52} color="green" style={navStyles.button}/>
+          </View>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={() => navigation.navigate('History')}>
+          <View >
+              <FontAwesome5 name="history" size={52} color="white" style={navStyles.button}/>
+          </View>
+      </TouchableHighlight>
+    </View>
+
+    </View>
+  );
+}
+
+function HistoryScreen({navigation}) {
+  return (
+    <View style={styles.container}>
+    <Text>Not Balls!!!</Text>
+    <Button
+        title="Go to HomeScreen"
+        onPress={() => navigation.navigate('Home')}
+      />
+    <StatusBar style="auto" />
+    
+    <View style={navStyles.viewContainer}>
+      <TouchableHighlight onPress={() => navigation.navigate('Home')}>
+          <View >
+              <Entypo name="home" size={52} color="white" style={navStyles.button} />
+          </View>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={() => navigation.navigate('Add Trip')}>
           <View >
               <Feather name="plus-circle" size={52} color="white" style={navStyles.button}/>
           </View>
       </TouchableHighlight>
-      <TouchableHighlight onPress={() => navigation.navigate('Test')}>
+      <TouchableHighlight onPress={() => navigation.navigate('History')}>
           <View >
-              <FontAwesome5 name="history" size={52} color="white" style={navStyles.button}/>
+              <FontAwesome5 name="history" size={52} color="green" style={navStyles.button}/>
           </View>
       </TouchableHighlight>
     </View>
@@ -78,7 +110,8 @@ export default function App({navigation}) {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home' screenOptions={{ animation: 'fade' }}>
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Test" component={TestScreen} />
+        <Stack.Screen name="Add Trip" component={AddTripScreen} />
+        <Stack.Screen name="History" component={HistoryScreen} />
       </Stack.Navigator>
 
 
