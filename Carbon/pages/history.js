@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
+import { Col, Row, Grid } from "react-native-easy-grid";
 
 import HistoryData from "./historyData";
 
@@ -7,13 +8,29 @@ function Item({ historyEntry }) {
   return (
     <>
       <View style={banner.header}>
-        <Text style={banner.TripName}>{historyEntry.Trip_Name}</Text>
-        <Text style={banner.vehicle}>{historyEntry.Vehicle}</Text>
-      </View>
-      <View style={banner.box}>
-        <Text>{historyEntry.Date}</Text>
-        <Text>{historyEntry.Distance} Miles</Text>
-        <Text>{historyEntry.CO2} kg Carbon</Text>
+        <Grid>
+          <Row style={banner.headerRow}>
+            <Col>
+            <Text style={banner.TripName}>{historyEntry.Trip_Name}</Text>
+            </Col>
+            <Col>
+            <Text style={banner.vehicle}>{historyEntry.Vehicle}</Text>
+            </Col>
+          </Row>
+          <Row style={banner.dataRow}>
+            <Col>
+            <Text style ={banner.CarbonUsage}>{historyEntry.CO2} kg Carbon</Text>
+            </Col>
+            <Col>
+            <Row>
+            <Text style = {banner.Date}>{historyEntry.Date}</Text>
+            </Row>
+            <Row>
+            <Text style = {banner.Distance}>{historyEntry.Distance} Miles</Text>
+            </Row>
+            </Col>
+          </Row>
+        </Grid>
       </View>
     </>
   )
@@ -50,23 +67,36 @@ const banner = StyleSheet.create({
   header : {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 4,
-    alignItems: 'center',
     borderWidth: 4,
     borderTopWidth: 6,
     borderBottomWidth: 0,
-    //justifyContent: 'center',
-    justifyContent: "space-between",
-    flexDirection: 'row',
     marginBottom: 0
   },
-
+  headerRow: {
+    backgroundColor: '#6C6C6C',
+    color: 'white'
+  },
+  dataRow: {
+    backgroundColor: '#3A3A3A',
+  },
   TripName: {
-    alignSelf: 'flex-start',
+    alignSelf: 'center',
+    color: 'white',
 
   },
   vehicle: {
-    alignSelf: 'flex-end',
-  }
+    alignSelf: 'center',
+    color: 'white',
+  },
+  CarbonUsage: {
+    alignSelf: 'center',
+    color: '#AF0000',
+  },
+  Date: {
+    color: 'white'
+  },
+  Distance: {
+    color: 'white'
+  },
 });
 
