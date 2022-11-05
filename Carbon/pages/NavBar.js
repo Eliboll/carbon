@@ -1,20 +1,20 @@
 
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import {  StyleSheet, Text, View } from 'react-native';
 import { Entypo, Feather, FontAwesome5} from '@expo/vector-icons'; 
-
+import { Dimensions } from 'react-native';
 export default function NavBar() {
     return (
         <View style={{flexDirection: "row"}}>
             <View onClick={buttonClicked(1)}>
-                <Entypo name="home" size={52} color="white" style={navStyles.button} />
+                <Entypo name="home" size={36} color="white" style={navStyles.button} />
             </View>
 
             <View onClick={buttonClicked(1)}>
-                <Feather name="plus-circle" size={52} color="white" style={navStyles.button}/>
+                <Feather name="plus-circle" size={36} color="white" style={navStyles.button}/>
             </View>
 
             <View onClick={buttonClicked(1)}>
-                <FontAwesome5 name="history" size={52} color="white" style={navStyles.button}/>
+                <FontAwesome5 name="history" size={36} color="white" style={navStyles.button}/>
             </View>
         </View>
 
@@ -46,7 +46,7 @@ const navStyles = StyleSheet.create({
         flex: 0,
         padding:20,
         width: Dimensions.get('screen').width / 3,
-        textAlign: 'center'
+        textAlign: 'center',
     },
 
     
