@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Button, Text, View, SafeAreaView, FlatList, Dimensions, TouchableHighlight } from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
-import {FontAwesome5} from '@expo/vector-icons'; 
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Entypo, Feather, FontAwesome5} from '@expo/vector-icons'; 
 
 import HistoryData from "./historyData";
 function buttonClicked({}) {
@@ -44,7 +46,7 @@ function Item({ historyEntry }) {
   )
 }
 
-export default function History() {
+export default function History({navigation}) {
   return (
     <>
     <SafeAreaView style={banner.container}>
@@ -53,6 +55,23 @@ export default function History() {
         renderItem={({ item }) => <Item historyEntry={item}/>}
       />
     </SafeAreaView>
+    <View style={navStyles.viewContainer}>
+      <TouchableHighlight onPress={() => navigation.navigate('Home')}>
+          <View >
+              <Entypo name="home" size={36} color="white" style={navStyles.button} />
+          </View>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={() => navigation.navigate('Add Trip')}>
+          <View >
+              <Feather name="plus-circle" size={36} color="white" style={navStyles.button}/>
+          </View>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={() => navigation.navigate('History')}>
+          <View >
+              <FontAwesome5 name="history" size={36} color="green" style={navStyles.button}/>
+          </View>
+      </TouchableHighlight>
+    </View>
     </>
   );
 }
@@ -117,3 +136,23 @@ const banner = StyleSheet.create({
   },
 });
 
+const navStyles = StyleSheet.create({
+  
+  viewContainer: {
+    flexDirection: "row",
+    marginTop: "auto",
+    
+  },
+
+  button: {
+      backgroundColor: "black",
+      padding: 10,
+      height: 100,
+      flex: 0,
+      padding:20,
+      width: Dimensions.get('screen').width / 3,
+      textAlign: 'center'
+  },
+
+  
+});
