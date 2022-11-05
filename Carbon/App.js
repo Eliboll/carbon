@@ -11,7 +11,7 @@ import HomePage from './pages/HomePage';
 import { useFonts } from 'expo-font';
 
 
-// import History from './pages/history';
+import HistoryScreen from './pages/history';
 
 const Stack = createNativeStackNavigator();
 
@@ -79,37 +79,37 @@ function AddTripScreen({navigation}) {
   );
 }
 
-function HistoryScreen({navigation}) {
-  return (
-    <View style={styles.container}>
-    <Text>Not Balls!!!</Text>
-    <Button
-        title="Go to HomeScreen"
-        onPress={() => navigation.navigate('Home')}
-      />
-    <StatusBar style="auto" />
+// function HistoryScreen({navigation}) {
+//   return (
+//     <View style={styles.container}>
+//     <Text>Not Balls!!!</Text>
+//     <Button
+//         title="Go to HomeScreen"
+//         onPress={() => navigation.navigate('Home')}
+//       />
+//     <StatusBar style="auto" />
     
-    <View style={navStyles.viewContainer}>
-      <TouchableHighlight onPress={() => navigation.navigate('Home')}>
-          <View >
-              <Entypo name="home" size={36} color="white" style={navStyles.button} />
-          </View>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={() => navigation.navigate('Add Trip')}>
-          <View >
-              <Feather name="plus-circle" size={36} color="white" style={navStyles.button}/>
-          </View>
-      </TouchableHighlight>
-      <TouchableHighlight onPress={() => navigation.navigate('History')}>
-          <View >
-              <FontAwesome5 name="history" size={36} color="green" style={navStyles.button}/>
-          </View>
-      </TouchableHighlight>
-    </View>
+//     <View style={navStyles.viewContainer}>
+//       <TouchableHighlight onPress={() => navigation.navigate('Home')}>
+//           <View >
+//               <Entypo name="home" size={36} color="white" style={navStyles.button} />
+//           </View>
+//       </TouchableHighlight>
+//       <TouchableHighlight onPress={() => navigation.navigate('Add Trip')}>
+//           <View >
+//               <Feather name="plus-circle" size={36} color="white" style={navStyles.button}/>
+//           </View>
+//       </TouchableHighlight>
+//       <TouchableHighlight onPress={() => navigation.navigate('History')}>
+//           <View >
+//               <FontAwesome5 name="history" size={36} color="green" style={navStyles.button}/>
+//           </View>
+//       </TouchableHighlight>
+//     </View>
 
-    </View>
-  );
-}
+//     </View>
+//   );
+// }
 
 export default function App({navigation}) {
   return (
