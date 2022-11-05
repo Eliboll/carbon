@@ -11,7 +11,7 @@ import HomePage from './pages/HomePage';
 import { useFonts } from 'expo-font';
 
 
-import History from './pages/history';
+// import History from './pages/history';
 
 const Stack = createNativeStackNavigator();
 
