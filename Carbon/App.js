@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 import NavBar from './pages/NavBar';
 import HomePage from './pages/HomePage';
@@ -11,30 +12,41 @@ import { useFonts } from 'expo-font';
 
 const Stack = createNativeStackNavigator();
 
-function HomeScreen() {
+function HomeScreen({navigation}) {
   return (
-    <>
-      <HomePage />
-    </>
+    <View style={styles.container}>
+    <Text>Balls!!!</Text>
+    <Button
+        title="Go to TestScreen"
+        onPress={() => navigation.navigate('Test')}
+      />
+    <StatusBar style="auto" />
+  </View>
   );
 }
 
-export default function App() {
-  const [fontsLoaded] = useFonts({
-    'Quicksand': require('./assets/Quicksand.ttf'),
-    'Codystar': require('./assets/Codystar-Regular.ttf'),
-  
-  });
+function TestScreen({navigation}) {
+  return (
+    <View style={styles.container}>
+    <Text>Not Balls!!!</Text>
+    <Button
+        title="Go to HomeScreen"
+        onPress={() => navigation.navigate('Home')}
+      />
+    <StatusBar style="auto" />
+  </View>
+  );
+}
+
+export default function App({navigation}) {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-    headerShown: false
-      }}>
-        
+      <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Test" component={TestScreen} />
       </Stack.Navigator>
 
-      <NavBar />
+      <NavBar navigationVar={navigation} />
     </NavigationContainer>
   );
 }

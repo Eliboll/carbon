@@ -1,41 +1,44 @@
-
-import {  StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Dimensions, StyleSheet, Text, View, Button } from 'react-native';
 import { Entypo, Feather, FontAwesome5} from '@expo/vector-icons'; 
-import { Dimensions } from 'react-native';
-export default function NavBar() {
+
+var navigation;
+
+export default function NavBar({ navigation }) {
+    // this.navigation = navigation;
+
+    function buttonClicked({navigation}, num)
+    {
+        switch(num) {
+            case 0:
+                navigation.navigate('Home');
+            case 1:
+                navigation.navigate('Test');
+            case 2:
+                navigation.navigate('Test');
+            default:
+
+        }
+    }
+
     return (
         <View style={{flexDirection: "row"}}>
-            <View onClick={buttonClicked(1)}>
-                <Entypo name="home" size={36} color="white" style={navStyles.button} />
+            <View onClick={buttonClicked(0)}>
+                <Entypo name="home" size={52} color="white" style={navStyles.button} />
             </View>
 
             <View onClick={buttonClicked(1)}>
                 <Feather name="plus-circle" size={36} color="white" style={navStyles.button}/>
             </View>
 
-            <View onClick={buttonClicked(1)}>
-                <FontAwesome5 name="history" size={36} color="white" style={navStyles.button}/>
+            <View onClick={buttonClicked(2)}>
+                <FontAwesome5 name="history" size={52} color="white" style={navStyles.button}/>
             </View>
         </View>
 
     );
-  }
-
-    function Home()
-    {
-    print("Ello")
-    }
-
-    
-
-    function buttonClicked(num)
-    {
-        if(num == 1)
-        {
-
-        }
-    }
-
+}
 
 const navStyles = StyleSheet.create({
     
@@ -50,5 +53,4 @@ const navStyles = StyleSheet.create({
     },
 
     
-  });
-  
+});
