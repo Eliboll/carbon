@@ -32,7 +32,7 @@ export default function NavBar() {
     {
         if(num == 1)
         {
-            
+
         }
     }
 
@@ -45,7 +45,8 @@ const navStyles = StyleSheet.create({
         height: 100,
         flex: 0,
         padding:20,
-        width: Dimensions.get('screen').width / 3
+        width: Dimensions.get('screen').width / 3,
+        textAlign: 'center'
     },
 
     
