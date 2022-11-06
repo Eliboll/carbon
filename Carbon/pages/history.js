@@ -5,7 +5,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Entypo, Feather, FontAwesome5} from '@expo/vector-icons'; 
 
-import HistoryData from "./historyData";
+// import HistoryData from "./historyData";
+
+let HistoryData = ["oh", "wow"]
+
 function buttonClicked({}) {
 
 }
@@ -47,6 +50,31 @@ function Item({ historyEntry }) {
 }
 
 export default function History({navigation}) {
+    async function GetJSON() {
+        var url = 'http://192.168.1.212:5000/getJSON';
+
+        // GET request
+        await fetch(url, {
+        method: 'GET',
+        })
+            .then((response) => response.json())
+            // Check if response is a JSON
+            .then((responseJson) => {
+            // Success
+            HistoryData = JSON.parse(JSON.stringify(responseJson));
+            return ("reply");
+            })
+            // Throw error
+            .catch((error) => { 
+            alert("Alerting 'error'")
+            alert(JSON.stringify(error));
+            console.error(error);
+        });
+        return ("reply");
+    }
+
+    GetJSON();
+
   return (
     <>
     <SafeAreaView style={banner.container}>
