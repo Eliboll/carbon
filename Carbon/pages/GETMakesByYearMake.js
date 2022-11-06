@@ -1,22 +1,12 @@
 
-export default function GETDB(Trip_Name, Make, Model, Year, Date, Distance, CO2) {
-    var url = 'http://192.168.1.212:5000/insert?';
+export default function GETMakesByYear(Year, Make) {
+    var url = 'http://192.168.1.212:5000/yearmake?';
 
     // Append parameters
-    url += 'Trip_Name=';
-    url += Trip_Name;
-    url += '&Make=';
-    url += Make;
-    url += '&Model=';
-    url += Model;
-    url += '&Year=';
+    url += 'year=';
     url += Year;
-    url += '&Date=';
-    url += Date;
-    url += '&Distance=';
-    url += Distance;
-    url += '&CO2=';
-    url += CO2;
+    url += '&make=';
+    url += Make;
 
     // GET request
     fetch(url, {
