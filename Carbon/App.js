@@ -18,11 +18,7 @@ const Stack = createNativeStackNavigator();
 function HomeScreen({navigation}) {
   return (
     <View style={styles.container}>
-    <Text>Balls!!!</Text>
-    <Button
-        title="Add a Trip!"
-        onPress={() => navigation.navigate('Add Trip')}
-      />
+    <HomePage />
     <StatusBar style="auto" />
 
     <View style={navStyles.viewContainer}>
