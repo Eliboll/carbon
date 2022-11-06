@@ -6,8 +6,32 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Entypo, Feather, FontAwesome5} from '@expo/vector-icons'; 
 
 import HistoryData from "./historyData";
-function buttonClicked({}) {
 
+function buttonClicked({}) {
+  const sample = new Trip("Walmart","Ford focus",10,"1/2/3",100);
+  updateJson(sample);
+}
+
+class Trip {
+  constructor(tripName, vehicle, co2, date, distance) {
+      this.Trip_Name = tripName;
+      this.Vehicle = vehicle;
+      this.Date = date;
+      this.CO2 = co2;
+      this.Distance = distance;
+  }
+}
+
+function updateJson(trip) {
+  const preJson = JSON.parse(JSON.stringify(HistoryData));
+  const newElement = {
+      'Trip_Name' : trip.Trip_Name,
+      'Vehicle' : trip.Vehicle,
+      'Date' : trip.Date,
+      'CO2' : trip.CO2,
+      'Distance' : trip.Distance
+  };
+  preJson.entries.push(newElement);
 }
 function Item({ historyEntry }) {
   return (
