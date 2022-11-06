@@ -20,7 +20,7 @@ export default function HomePage() {
 {
   //setUsage(parseFloat(JSON.stringify(responseJson["current"])));
   //data.data = (usage / 88);
-  setUsageLabel("60kg" + "/88kg")
+  setUsageLabel("60.9kg" + "/88kg")
   setUsageTextLabel("68.2" + "% of your budget used")
 
 }
