@@ -108,9 +108,10 @@ function AddTripScreen({navigation}) {
 // }
 
 export default function App({navigation}) {
+  
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home' screenOptions={{ animation: 'fade' }}>
+      <Stack.Navigator initialRouteName='Home' screenOptions={{ animation: 'fade', headerShown: false }}>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Add Trip" component={AddTripScreen} />
         <Stack.Screen name="History" component={HistoryScreen} />
