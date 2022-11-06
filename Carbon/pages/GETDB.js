@@ -1,0 +1,34 @@
+
+export default function GETDB(Trip_Name, Vehicle, Date, Distance, CO2) {
+    var url = 'http://192.168.1.212:5000/insert?';
+
+    // Append parameters
+    url += 'Trip_Name=';
+    url += Trip_Name;
+    url += '&Vehicle=';
+    url += Vehicle;
+    url += '&Date=';
+    url += Date;
+    url += '&Distance=';
+    url += Distance;
+    url += '&CO2=';
+    url += CO2;
+
+    // GET request
+    fetch(url, {
+    method: 'GET',
+    })
+        .then((response) => response.json())
+        // Check if response is a JSON
+        .then((responseJson) => {
+        // Success
+        alert(JSON.stringify(responseJson));
+        console.log(responseJson);
+        return responseJson;
+        })
+        // Throw error
+        .catch((error) => { 
+        alert(JSON.stringify(error));
+        console.error(error);
+    });
+}

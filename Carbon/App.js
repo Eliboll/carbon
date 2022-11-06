@@ -7,6 +7,7 @@ import { Entypo, Feather, FontAwesome5} from '@expo/vector-icons';
 
 import NavBar from './pages/NavBar';
 import HomePage from './pages/HomePage';
+import GETDB from './pages/GETDB';
 
 import { useFonts } from 'expo-font';
 
@@ -75,40 +76,10 @@ function AddTripScreen({navigation}) {
   );
 }
 
-// function HistoryScreen({navigation}) {
-//   return (
-//     <View style={styles.container}>
-//     <Text>Not Balls!!!</Text>
-//     <Button
-//         title="Go to HomeScreen"
-//         onPress={() => navigation.navigate('Home')}
-//       />
-//     <StatusBar style="auto" />
-    
-//     <View style={navStyles.viewContainer}>
-//       <TouchableHighlight onPress={() => navigation.navigate('Home')}>
-//           <View >
-//               <Entypo name="home" size={36} color="white" style={navStyles.button} />
-//           </View>
-//       </TouchableHighlight>
-//       <TouchableHighlight onPress={() => navigation.navigate('Add Trip')}>
-//           <View >
-//               <Feather name="plus-circle" size={36} color="white" style={navStyles.button}/>
-//           </View>
-//       </TouchableHighlight>
-//       <TouchableHighlight onPress={() => navigation.navigate('History')}>
-//           <View >
-//               <FontAwesome5 name="history" size={36} color="green" style={navStyles.button}/>
-//           </View>
-//       </TouchableHighlight>
-//     </View>
-
-//     </View>
-//   );
-// }
-
 export default function App({navigation}) {
   
+  console.log(GETDB("AHHH", "Ford", "11/5/22", 11.2, 102.3))
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home' screenOptions={{ animation: 'fade', headerShown: false }}>
