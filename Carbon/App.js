@@ -75,7 +75,7 @@ function AddTripScreen({navigation}) {
 
 export default function App({navigation}) {
   
-  console.log(GETDB("AHHH", "Ford", "11/5/22", 11.2, 102.3))
+  //console.log(GETDB("AHHH", "Ford", "11/5/22", 11.2, 102.3))
 
   return (
     <NavigationContainer>

@@ -4,12 +4,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { Dimensions, StyleSheet, Text, TextInput, View, Button, TouchableHighlight } from 'react-native';
 import { Entypo, Feather, FontAwesome5} from '@expo/vector-icons'; 
+import {useState, useEffect} from "react";
 
 import { readRemoteFile } from 'react-native-csv';
 
 import SelectDropdown from 'react-native-select-dropdown';
 
-import GETDB from './GETDB';
+import GETDB from './GETDB'
+import GETMakesByYearMake from './GETMakesByYearMake';
+
 
 // import VehicleData from '../assets/vehicleDataCondensed.csv';
 // readRemoteFile(
@@ -23,10 +26,12 @@ import GETDB from './GETDB';
 let years = ["2022", "2021", "2020"];
 let makes = ["Ford", "Mazda", "Pontiac", "Jeep"];
 
-
-
  
-  
+function later(delay) {
+    return new Promise(function(resolve) {
+        setTimeout(resolve, delay);
+    });
+}
 
 export default function AddTrip()
 {
@@ -35,20 +40,29 @@ export default function AddTrip()
 
     const [readyToSend, setReadyToSend] = React.useState(false);
 
+
+    
     
     function sendData(year, make, model, miles, tripName)
     {
-        console.log("Calling send data?");
+        if (year && make && model && miles > 0 && tripName)
+        {
+            console.log("Calling send data?");
         
-        console.log("Year: " + year);
-        console.log("Make: " + make);
-        console.log("Model: " + model);
-        console.log("Miles: " + miles);
-        var date = Date.now().toLocaleString();
-        console.log(GETDB(tripName, make, date, parseFloat(miles), 102.3))
-    
+            console.log("Year: " + year);
+            console.log("Make: " + make);
+            console.log("Model: " + model);
+            console.log("Miles: " + miles);
+            var date = Date.now().toLocaleString();
+            console.log(GETDB(tripName, make, model, year, date, parseFloat(miles)))
+        }
+        
+        
         
     }
+    
+
+    
 
     const [year, setYear] = React.useState('');
     const [make, setMake] = React.useState('');
@@ -56,8 +70,41 @@ export default function AddTrip()
     const [miles, setMiles] = React.useState('');
     const [tripName, setTripName] = React.useState(0);
 
-    
+    const [json, setJson] = React.useState('');
 
+
+    async function GETMakesByYear(Year) {
+        var url = 'http://192.168.1.212:5000/year?';
+    
+        // Append parameters
+        url += 'year=';
+        url += Year;
+    
+        // GET request
+        await fetch(url, {
+        method: 'GET',
+        })
+            .then((response) => response.json())
+            // Check if response is a JSON
+            .then((responseJson) => {
+            // Success
+            //alert(JSON.stringify(responseJson));
+            reply = JSON.stringify(responseJson).toString();
+            console.log("CALL LOG: " + (reply));
+            console.log("Len: " + (reply.length))
+            setJson(reply)
+            console.log("PEPEPPEEPEPEP, : " + json)
+            return reply;
+            })
+            // Throw error
+            .catch((error) => { 
+            alert("Alerting 'error'")
+            alert(JSON.stringify(error));
+            console.error(error);
+        });
+    }
+
+    
     return (
         <View>
             <Text style={addFormStyles.title}>Add a Trip</Text>
@@ -65,11 +112,24 @@ export default function AddTrip()
                 data={years}
                 defaultButtonText="Enter Year"
 
-                buttonTextAfterSelection={(selectedItem, index) => {
+                buttonTextAfterSelection={ (selectedItem, index) => {
                     // text represented after item is selected
                     // if data array is an array of objects then return selectedItem.property to render after item is selected
                     setMakeField(false);
-                    setYear(selectedItem);
+                    
+                    if(selectedItem)
+                    {
+                        //setYearFetch(selectedItem);
+                        console.log("Before get");
+                        let x = "notDone";
+                        setYear(selectedItem)
+                        GETMakesByYear(selectedItem);
+
+                        
+                        console.log("after")
+                        
+                    }
+                    //console.log(makes.toString())
                     return selectedItem
                 }}
                 rowTextForSelection={(item, index) => {
@@ -188,4 +248,14 @@ const styles = StyleSheet.create({
         color: "green"
     }
     
+
+
+
+
+    
   });
+
+
+
+  
+
