@@ -24,7 +24,7 @@ import GETDB from './GETDB'
 //     }
 //   );
 let years = ["2022", "2021", "2020"];
-let makes = ["Ford", "Mazda", "Pontiac", "Jeep"];
+let makes = ["Toyota","Kia","Mercedes-Benz","Jaguar","Land Rover","Hyundai","BMW","Acura","Jeep","Nissan","Genesis","Aston Martin","Audi","Lamborghini","Chevrolet","Cadillac","Subaru","Buick","Lexus","Ford","Mitsubishi","Lincoln","Volvo","GMC","Alfa Romeo","Infiniti","Porsche","Fiat","Honda","Ram","Ferrari","MINI","Mazda","Maserati","Dodge","Chrysler","Lotus","Bentley","Rolls-Royce","BYD","Volkswagen","Bugatti","Tesla","Karma","Roush Performance","McLaren Automotive","Polestar","Pagani","RUF Automobile","Koenigsegg"];
 
 
 function later(delay) {
