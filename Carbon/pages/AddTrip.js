@@ -153,7 +153,12 @@ export default function AddTrip()
                     // text represented after item is selected
                     // if data array is an array of objects then return selectedItem.property to     after item is selected
                     setModelField(false);
-                    setMake(selectedItem);
+                    if(selectedItem)
+                    {
+                        let y = "notDone";
+                        setModel(selectedItem)
+                        GETMakesByYearMake(selectedItem);                        
+                    }
                     return selectedItem
                 }}
                 rowTextForSelection={(item, index) => {
@@ -166,7 +171,7 @@ export default function AddTrip()
 
             <SelectDropdown dropdownStyle={addFormStyles.dropDownField}
                 data={makes}
-                defaultButtonText="Enter Value"
+                defaultButtonText="Enter Model"
                 buttonTextAfterSelection={(selectedItem, index) => {
                     // text represented after item is selected
                     // if data array is an array of objects then return selectedItem.property to render after item is selected
