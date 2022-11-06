@@ -2,7 +2,7 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
-import { Dimensions, StyleSheet, Text, TextInput, View, Button, TouchableHighlight } from 'react-native';
+import { Dimensions, StyleSheet, Text, TextInput, View, Button, TouchableHighlight, FlatList } from 'react-native';
 import { Entypo, Feather, FontAwesome5} from '@expo/vector-icons'; 
 import {useState, useEffect} from "react";
 
@@ -10,7 +10,7 @@ import { readRemoteFile } from 'react-native-csv';
 
 import SelectDropdown from 'react-native-select-dropdown';
 
-import GETDB from './GETDB'
+import GETDB from './GETDB';
 // import GETMakesByYearMake from './GETMakesByYearMake';
 
 
@@ -25,7 +25,7 @@ import GETDB from './GETDB'
 //   );
 let years = ["2022", "2021", "2020"];
 let makes = ["Toyota","Kia","Mercedes-Benz","Jaguar","Land Rover","Hyundai","BMW","Acura","Jeep","Nissan","Genesis","Aston Martin","Audi","Lamborghini","Chevrolet","Cadillac","Subaru","Buick","Lexus","Ford","Mitsubishi","Lincoln","Volvo","GMC","Alfa Romeo","Infiniti","Porsche","Fiat","Honda","Ram","Ferrari","MINI","Mazda","Maserati","Dodge","Chrysler","Lotus","Bentley","Rolls-Royce","BYD","Volkswagen","Bugatti","Tesla","Karma","Roush Performance","McLaren Automotive","Polestar","Pagani","RUF Automobile","Koenigsegg"];
-let models = ["Prius","Camry","Corolla"]
+let models = ["GR Supra","Corolla","Corolla XLE","Corolla Hybrid","Corolla XSE","Corolla Hatchback","Corolla Hatchback XSE","RAV4 Prime 4WD","Prius","Prius AWD","Prius Eco","Prius Prime","Venza AWD","Avalon XLE","Avalon","Avalon Hybrid","Avalon Hybrid XLE","Avalon AWD","Avalon TRD","RAV4","RAV4 AWD","RAV4 AWD TRD OFFROAD","RAV4 AWD LE","RAV4 Hybrid  AWD","4Runner 2WD","4Runner 4WD","C-HR","Tundra 2WD","Tundra 4WD","Land Cruiser Wagon 4WD","Tacoma 2WD","Tacoma 4WD","Tacoma 4WD D-CAB MT TRD-ORP/PRO","Highlander","Highlander Hybrid","Highlander AWD","Highlander Hybrid AWD","Highlander Hybrid AWD LTD/PLAT","Sequoia 2WD","Sequoia 4WD","Corolla APEX","Camry","Camry TRD","Camry XSE","Camry LE/SE","Camry XLE/XSE","Camry Hybrid LE","Camry Hybrid SE/XLE/XSE","Camry AWD LE/SE","Camry AWD XLE/XSE","Sienna Hybrid 2WD","Sienna Hybrid AWD"]
 let currentYear = 2022
 
 function later(delay) {
