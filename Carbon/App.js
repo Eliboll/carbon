@@ -13,6 +13,7 @@ import { useFonts } from 'expo-font';
 
 
 import HistoryScreen from './pages/history';
+import AddTrip from './pages/AddTrip';
 
 const Stack = createNativeStackNavigator();
 
@@ -47,13 +48,9 @@ function HomeScreen({navigation}) {
 function AddTripScreen({navigation}) {
   return (
     <View style={styles.container}>
-    <Text>Not Balls!!!</Text>
-    <Button
-        title="Go to HomeScreen"
-        onPress={() => navigation.navigate('Home')}
-      />
-    <StatusBar style="auto" />
     
+    <StatusBar style="auto" />
+    <AddTrip />
     <View style={navStyles.viewContainer}>
       <TouchableHighlight onPress={() => navigation.navigate('Home')}>
           <View >
