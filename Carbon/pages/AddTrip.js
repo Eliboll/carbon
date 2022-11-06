@@ -8,6 +8,9 @@ import { Entypo, Feather, FontAwesome5} from '@expo/vector-icons';
 import { readRemoteFile } from 'react-native-csv';
 
 import SelectDropdown from 'react-native-select-dropdown';
+
+import GETDB from './GETDB';
+
 // import VehicleData from '../assets/vehicleDataCondensed.csv';
 // readRemoteFile(
 //     '../assets/vehicleDataCondensed.csv',
@@ -22,7 +25,6 @@ let makes = ["Ford", "Mazda", "Pontiac", "Jeep"];
 
 
 
-
  
   
 
@@ -31,15 +33,30 @@ export default function AddTrip()
     const [fieldMakeInactive, setMakeField] = React.useState(true);
     const [fieldModelInactive, setModelField] = React.useState(true);
 
-    const [year, setYear] = React.useState('');
-    const [make, setMake] = React.useState('');
-    const [model, setModel] = React.useState('');
-    function sendData()
+    const [readyToSend, setReadyToSend] = React.useState(false);
+
+    
+    function sendData(year, make, model, miles, tripName)
     {
+        console.log("Calling send data?");
+        
         console.log("Year: " + year);
         console.log("Make: " + make);
         console.log("Model: " + model);
+        console.log("Miles: " + miles);
+        var date = Date.now().toLocaleString();
+        console.log(GETDB(tripName, make, date, parseFloat(miles), 102.3))
+    
+        
     }
+
+    const [year, setYear] = React.useState('');
+    const [make, setMake] = React.useState('');
+    const [model, setModel] = React.useState('');
+    const [miles, setMiles] = React.useState('');
+    const [tripName, setTripName] = React.useState(0);
+
+    
 
     return (
         <View>
@@ -96,17 +113,23 @@ export default function AddTrip()
                 }}
                 disabled={fieldModelInactive}
             />
+            <Text style={addFormStyles.distanceText}>Enter Trip Name</Text>
+            <TextInput 
+                style={addFormStyles.mileageField}
+                keyboardType= 'default' 
+                onChangeText={(text) => setTripName(text)}
+            />
             <Text style={addFormStyles.distanceText}>Enter Distance</Text>
             <TextInput 
                 style={addFormStyles.mileageField}
                 keyboardType= 'numeric' 
-               
+                onChangeText={(text) => setMiles(text)}
             />
             <Button
                 title="Submit"
                 color="green"
                 padding="30"
-                onPress={sendData()}
+                onPress={() => {sendData(year, make, model, parseFloat(miles), tripName)}}
             />
         </View >
     )
