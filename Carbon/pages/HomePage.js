@@ -4,12 +4,22 @@ import React from "react";
 import { Dimensions } from 'react-native';
 
 import { useFonts } from 'expo-font';
+import {useState, useEffect} from "react";
 
 
 
-
+var data = {
+  labels: ["Produced"], // optional
+  data: [0.32]
+};
 
 export default function HomePage() {
+ 
+  const [usage, setUsage] = useState(0);
+  const [usageLabel, setUsageLabel] = useState('');
+  const [usageTextLabel, setUsageTextLabel] = useState('');
+  
+
     const [fontsLoaded] = useFonts({
         'Quicksand': require('../assets/Quicksand.ttf'),
         'Codystar': require('../assets/Codystar-Regular.ttf'),
@@ -31,10 +41,13 @@ export default function HomePage() {
           stroke: "#ffa726"
         }
       };
-      const data = {
-        labels: ["Produced"], // optional
-        data: [0.683]
-      };
+      useState(() => {
+        setUsageLabel(usage + "/88kg")
+        setUsageTextLabel((usage / 88).toString() + "% of your budget used")
+        data.data = [(usage / 88)], []
+      }
+      )
+      
     return (
         
             <View style={homeStyles.container}>
@@ -49,15 +62,18 @@ export default function HomePage() {
                     hideLegend={true}
                 />
                 <Text style={homeStyles.percentText}>
-                    8.2kg/12kg
+                    {usageLabel}
                 </Text>
                 <Text style={homeStyles.chartText}>
-                    68.3% of your weekly budget
+                    {usageTextLabel}
                 </Text>
             </View>
         
     );
 }
+
+
+
 
 const homeStyles = StyleSheet.create({
     
@@ -80,7 +96,7 @@ const homeStyles = StyleSheet.create({
         marginBottom: 100,
         textAlign: 'center',
         color: 'white',
-        fontSize: 32,
+        fontSize: 28,
         fontFamily: 'Quicksand'
         
     },
