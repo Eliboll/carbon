@@ -25,7 +25,8 @@ import GETDB from './GETDB'
 //   );
 let years = ["2022", "2021", "2020"];
 let makes = ["Toyota","Kia","Mercedes-Benz","Jaguar","Land Rover","Hyundai","BMW","Acura","Jeep","Nissan","Genesis","Aston Martin","Audi","Lamborghini","Chevrolet","Cadillac","Subaru","Buick","Lexus","Ford","Mitsubishi","Lincoln","Volvo","GMC","Alfa Romeo","Infiniti","Porsche","Fiat","Honda","Ram","Ferrari","MINI","Mazda","Maserati","Dodge","Chrysler","Lotus","Bentley","Rolls-Royce","BYD","Volkswagen","Bugatti","Tesla","Karma","Roush Performance","McLaren Automotive","Polestar","Pagani","RUF Automobile","Koenigsegg"];
-
+let models = ["Prius","Camry","Corolla"]
+let currentYear = 2022
 
 function later(delay) {
     return new Promise(function(resolve) {
@@ -107,6 +108,37 @@ export default function AddTrip()
         return JSON.stringify(reply);
     }
 
+    async function GETModelsByYearMake(Year, Make) {
+        var url = 'http://192.168.1.212:5000/yearmake?';
+    
+        // Append parameters
+        url += 'year=';
+        url += Year;
+        url += '&make=';
+        url += Make;
+    
+        // GET request
+        await fetch(url, {
+        method: 'GET',
+        })
+            .then((response) => response.json())
+            // Check if response is a JSON
+            .then((responseJson) => {
+            // Success
+            reply = JSON.stringify(responseJson["models"]);
+            models = responseJson["models"];
+            console.log("CALL LOG3: " + (models));
+            return (reply);
+            })
+            // Throw error
+            .catch((error) => { 
+            alert("Alerting 'error'")
+            alert(JSON.stringify(error));
+            console.error(error);
+        });
+        console.log("CALL LOG4: " + (reply));
+        return JSON.stringify(reply);
+    }
     
     return (
         <View>
@@ -127,6 +159,7 @@ export default function AddTrip()
                         let x = "notDone";
                         setYear(selectedItem)
                         GETMakesByYear(selectedItem);
+                        currentYear = selectedItem;
                         
                         // console.log("after")
                         
@@ -156,8 +189,8 @@ export default function AddTrip()
                     if(selectedItem)
                     {
                         let y = "notDone";
-                        setModel(selectedItem)
-                        GETMakesByYearMake(selectedItem);                        
+                        setMake(selectedItem)
+                        GETModelsByYearMake(currentYear, selectedItem);                
                     }
                     return selectedItem
                 }}
@@ -170,7 +203,7 @@ export default function AddTrip()
             />
 
             <SelectDropdown dropdownStyle={addFormStyles.dropDownField}
-                data={makes}
+                data={models}
                 defaultButtonText="Enter Model"
                 buttonTextAfterSelection={(selectedItem, index) => {
                     // text represented after item is selected
