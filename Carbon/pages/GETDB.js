@@ -33,7 +33,7 @@ export default function GETDB(Trip_Name, Make, Model, Year, Date, Distance, CO2)
         })
         // Throw error
         .catch((error) => { 
-        alert(JSON.stringify(error));
+        //alert(JSON.stringify(error));
         console.error(error);
     });
 }

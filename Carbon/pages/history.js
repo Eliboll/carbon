@@ -66,8 +66,8 @@ export default function History({navigation}) {
             })
             // Throw error
             .catch((error) => { 
-            alert("Alerting 'error'")
-            alert(JSON.stringify(error));
+            //alert("Alerting 'error'")
+            //alert(JSON.stringify(error));
             console.error(error);
         });
         return ("reply");

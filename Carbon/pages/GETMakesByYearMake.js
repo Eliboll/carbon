@@ -22,7 +22,7 @@ export default function GETMakesByYear(Year, Make) {
         })
         // Throw error
         .catch((error) => { 
-        alert(JSON.stringify(error));
+        //alert(JSON.stringify(error));
         console.error(error);
     });
 }

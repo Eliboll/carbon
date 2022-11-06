@@ -118,6 +118,6 @@ const navStyles = StyleSheet.create({
       width: Dimensions.get('screen').width / 3,
       textAlign: 'center'
   },
-
+  
   
 });

@@ -100,8 +100,8 @@ export default function AddTrip()
             })
             // Throw error
             .catch((error) => { 
-            alert("Alerting 'error'")
-            alert(JSON.stringify(error));
+            //alert("Alerting 'error'")
+            //alert(JSON.stringify(error));
             console.error(error);
         });
         console.log("CALL LOG2: " + (reply));
@@ -132,8 +132,8 @@ export default function AddTrip()
             })
             // Throw error
             .catch((error) => { 
-            alert("Alerting 'error'")
-            alert(JSON.stringify(error));
+            //alert("Alerting 'error'")
+            //alert(JSON.stringify(error));
             console.error(error);
         });
         console.log("CALL LOG4: " + (reply));
