@@ -26,7 +26,7 @@ export default function GETDB(Trip_Name, Make, Model, Year, Date, Distance, CO2)
         // Check if response is a JSON
         .then((responseJson) => {
         // Success
-        alert(JSON.stringify(responseJson));
+        alert("Trip created Succesfully!");
         console.log(responseJson);
         return responseJson;
         })
