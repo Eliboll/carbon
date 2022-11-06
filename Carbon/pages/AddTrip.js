@@ -11,7 +11,7 @@ import { readRemoteFile } from 'react-native-csv';
 import SelectDropdown from 'react-native-select-dropdown';
 
 import GETDB from './GETDB'
-import GETMakesByYearMake from './GETMakesByYearMake';
+// import GETMakesByYearMake from './GETMakesByYearMake';
 
 
 // import VehicleData from '../assets/vehicleDataCondensed.csv';
@@ -26,7 +26,7 @@ import GETMakesByYearMake from './GETMakesByYearMake';
 let years = ["2022", "2021", "2020"];
 let makes = ["Ford", "Mazda", "Pontiac", "Jeep"];
 
- 
+
 function later(delay) {
     return new Promise(function(resolve) {
         setTimeout(resolve, delay);
@@ -89,12 +89,13 @@ export default function AddTrip()
             .then((responseJson) => {
             // Success
             //alert(JSON.stringify(responseJson));
-            reply = JSON.stringify(responseJson).toString();
-            console.log("CALL LOG: " + (reply));
-            console.log("Len: " + (reply.length))
-            setJson(reply)
-            console.log("PEPEPPEEPEPEP, : " + json)
-            return reply;
+            reply = JSON.stringify(responseJson["makes"]);
+            makes = responseJson["makes"];
+            console.log("CALL LOG: " + (makes));
+            // console.log("Len: " + (reply.length))
+            // setJson(reply)
+            // console.log("PEPEPPEEPEPEP, : " + json)
+            return (reply);
             })
             // Throw error
             .catch((error) => { 
@@ -102,6 +103,8 @@ export default function AddTrip()
             alert(JSON.stringify(error));
             console.error(error);
         });
+        console.log("CALL LOG2: " + (reply));
+        return JSON.stringify(reply);
     }
 
     
@@ -120,31 +123,35 @@ export default function AddTrip()
                     if(selectedItem)
                     {
                         //setYearFetch(selectedItem);
-                        console.log("Before get");
+                        // console.log("Before get");
                         let x = "notDone";
                         setYear(selectedItem)
                         GETMakesByYear(selectedItem);
-
                         
-                        console.log("after")
+                        // console.log("after")
                         
                     }
-                    //console.log(makes.toString())
+                    console.log("selectedItem: " + selectedItem.toString())
+                    console.log("MAKES AHH: " + (makes));
                     return selectedItem
                 }}
                 rowTextForSelection={(item, index) => {
+                    console.log("item: " + item)
                     // text represented for each item in dropdown
                     // if data array is an array of objects then return item.property to represent item in dropdown
                     return item
                 }}
             />
 
-            <SelectDropdown dropdownStyle={addFormStyles.dropDownField}
+            
+            <SelectDropdown dropdownStyle={addFormStyles.dropDownField}                
                 data={makes}
                 defaultButtonText="Enter Make"
                 buttonTextAfterSelection={(selectedItem, index) => {
+                    console.log("makedropdown");
+                    console.log("makesinthedropdown" + makes)
                     // text represented after item is selected
-                    // if data array is an array of objects then return selectedItem.property to render after item is selected
+                    // if data array is an array of objects then return selectedItem.property to     after item is selected
                     setModelField(false);
                     setMake(selectedItem);
                     return selectedItem
